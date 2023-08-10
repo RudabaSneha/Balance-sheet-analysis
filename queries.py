@@ -10,11 +10,14 @@ balance_sheet = requests.get(f'https://financialmodelingprep.com/api/v3/balance-
 balance_sheet = balance_sheet.json()
 
 
-print(balance_sheet[0].keys())#most recent value
+#print(balance_sheet[0].keys())
+#most recent value
 total_current_assets = balance_sheet[0]['totalCurrentAssets']
 print(f"Total Current Assets of {company}: {total_current_assets:,}")
 total_current_liabilities = balance_sheet[0]['totalCurrentLiabilities']
 print(f"Total Current liabilities of {company}: {total_current_liabilities:,}")
+current_stockholder_equity = total_current_assets - total_current_liabilities
+print(f'current stockholder equity: {current_stockholder_equity:,}')
 
 total_debt = balance_sheet[0]['totalDebt']
 cash_and_equivalents = balance_sheet[0]['cashAndCashEquivalents']
@@ -28,3 +31,6 @@ pct_intangible = goodwill_and_intaginbles/ total_assets
 
 #format to 2 decimal places
 print(f'Percentage intangibles:{pct_intangible * 100: .2f}')
+
+Stockholder_equity = balance_sheet[0]['totalStockholdersEquity']
+print(f'stockholder equity: {Stockholder_equity:,} for {company}')
